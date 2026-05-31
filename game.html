@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Catch My Love 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  overflow:hidden;
+  height:100vh;
+  background:
+  linear-gradient(to bottom,#4a0000,#220000,#080808);
+  font-family:'Nunito',sans-serif;
+  position:relative;
+  color:white;
+}
+
+/* ✨ background glow */
+
+body::before{
+  content:'';
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:rgba(255,105,180,0.08);
+  border-radius:50%;
+  filter:blur(90px);
+  top:-100px;
+  left:-100px;
+}
+
+body::after{
+  content:'';
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:rgba(255,182,193,0.08);
+  border-radius:50%;
+  filter:blur(90px);
+  bottom:-100px;
+  right:-100px;
+}
+
+/* 💖 heading */
+
+.top{
+  width:100%;
+  text-align:center;
+  padding-top:30px;
+  z-index:10;
+  position:relative;
+}
+
+.top h1{
+  font-family:'Pacifico';
+  font-size:42px;
+  color:#ffd6e7;
+}
+
+.top p{
+  margin-top:10px;
+  color:#ffd6dc;
+  font-size:17px;
+}
+
+/* 🔒 surprise cards */
+
+.cards{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:70px;
+  margin-top:60px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:10;
+}
+
+/* 💖 ICON GIFT */
+
+.gift{
+  position:relative;
+  width:140px;
+  height:140px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:0.4s;
+  animation:floatGift 4s ease-in-out infinite;
+}
+
+/* floating effect */
+
+.gift:nth-child(2){
+  animation-delay:1s;
+}
+
+.gift:nth-child(3){
+  animation-delay:2s;
+}
+
+@keyframes floatGift{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-15px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+/* icons */
+
+.gift img{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  filter:grayscale(0.3);
+  transition:0.4s;
+}
+
+/* locked */
+
+.gift.locked{
+  opacity:0.65;
+}
+
+/* unlocked */
+
+.gift.unlocked{
+  opacity:1;
+}
+
+.gift.unlocked img{
+  transform:scale(1.08);
+  filter:drop-shadow(0 0 25px rgba(255,182,193,0.9));
+}
+
+/* lock */
+
+.lock{
+  position:absolute;
+  bottom:-10px;
+  font-size:26px;
+}
+
+/* 🎮 game area */
+
+#gameArea{
+  position:relative;
+  width:100%;
+  height:55vh;
+  overflow:hidden;
+  margin-top:20px;
+}
+
+/* ❤️ falling hearts */
+
+.heart{
+  position:absolute;
+  font-size:34px;
+  animation:fall linear forwards;
+  user-select:none;
+}
+
+@keyframes fall{
+
+  from{
+    transform:translateY(-10vh);
+  }
+
+  to{
+    transform:translateY(100vh);
+  }
+
+}
+
+/* 🧺 basket */
+
+#basket{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:75px;
+  transition:left 0.05s linear;
+  z-index:20;
+}
+
+/* 💖 score */
+
+#scoreBoard{
+  position:absolute;
+  top:10px;
+  right:30px;
+  font-size:24px;
+  color:#ffe0ea;
+  z-index:30;
+  font-weight:700;
+}
+
+/* ✨ unlocked text */
+
+#winText{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  bottom:110px;
+  font-size:34px;
+  font-family:'Pacifico';
+  color:#ffd6e7;
+  display:none;
+  z-index:50;
+}
+
+/* 📱 mobile */
+
+@media(max-width:768px){
+
+  .top h1{
+    font-size:32px;
+  }
+
+  .cards{
+    gap:18px;
+    padding:0 15px;
+  }
+
+  .card{
+    width:170px;
+    height:140px;
+  }
+
+  #basket{
+    font-size:65px;
+    bottom:70px;
+  }
+
+}
+/* 💖 START SCREEN */
+
+#startScreen{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(8px);
+  z-index:100;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+#startScreen h2{
+  font-family:'Pacifico';
+  font-size:42px;
+  color:#ffe0ea;
+  margin-bottom:30px;
+  text-align:center;
+}
+
+#startScreen button{
+  padding:16px 40px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(to right,#ffe0ea,#ffb3c6);
+  color:#630000;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+}
+#resetBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:9999;
+
+padding:12px 22px;
+
+border:none;
+border-radius:40px;
+
+background:linear-gradient(
+to right,
+#ffe0ea,
+#ffb3c6
+);
+
+color:#6d0000;
+font-size:15px;
+font-weight:700;
+
+cursor:pointer;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+transition:.3s;
+}
+
+#resetBtn:hover{
+transform:translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 💖 heading -->
+
+<div class="top">
+
+  <h1>Catch Hearts To Unlock Surprises 💖</h1>
+
+  <p>
+    Collect all the hearts and unlock hidden memories ✨
+  </p>
+
+</div>
+
+<!-- 🔒 cards -->
+
+<div class="cards">
+
+<div class="gift locked" id="card1" onclick="openLetter()">
+  <img src="icon-1.png">
+  <div class="lock">🔒</div>
+</div>
+
+  <div class="gift locked" id="card2" onclick="openJournal()">
+  <img src="icon-2.png">
+  <div class="lock">🔒</div>
+</div>
+
+  <div class="gift locked" id="card3" onclick="openGallery()">
+    <img src="icon-3.png">
+    <div class="lock">🔒</div>
+  </div>
+
+</div>
+
+<!-- 🎮 game -->
+<!-- 💖 START SCREEN -->
+
+<div id="startScreen">
+
+  <h2>Ready To Unlock Your Surprises? 💖</h2>
+
+  <button onclick="startGame()">
+    Start Game ✨
+  </button>
+
+</div>
+<div id="gameArea">
+
+  <div id="scoreBoard">
+    ❤️ 0 / 15
+  </div>
+
+  <div id="winText">
+    You unlocked all my little surprises 💖
+  </div>
+
+  <div id="basket">
+    🧺
+  </div>
+
+</div>
+<div><button id="resetBtn" onclick="resetGame()">
+🔄 Reset
+</button></div>
+
+<script>
+  let score = 0;
+let target = 15;
+let gameStarted = false;
+
+let gameLoop = null;
+
+// IMPORTANT: proper state load
+let gameCompleted = localStorage.getItem("gameCompleted") === "true";
+
+const gameArea = document.getElementById("gameArea");
+const basket = document.getElementById("basket");
+const scoreBoard = document.getElementById("scoreBoard");
+
+/* 🧺 move basket */
+document.addEventListener("mousemove", (e) => {
+  if (gameStarted) {
+    basket.style.left = e.clientX + "px";
+  }
+});
+
+/* ❤️ create hearts */
+function createHeart() {
+  let heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+
+  heart.style.left =
+    Math.random() * (window.innerWidth - 50) + "px";
+
+  let duration = Math.random() * 3 + 4;
+  heart.style.animationDuration = duration + "s";
+
+  gameArea.appendChild(heart);
+
+  let fall = setInterval(() => {
+    let heartRect = heart.getBoundingClientRect();
+    let basketRect = basket.getBoundingClientRect();
+
+    if (
+      heartRect.bottom >= basketRect.top &&
+      heartRect.left < basketRect.right &&
+      heartRect.right > basketRect.left
+    ) {
+      heart.remove();
+      clearInterval(fall);
+
+      score++;
+      scoreBoard.innerHTML = "❤️ " + score + " / " + target;
+
+      if (score >= target) {
+        unlockSurprises();
+      }
+    }
+  }, 50);
+
+  setTimeout(() => {
+    heart.remove();
+    clearInterval(fall);
+  }, duration * 1000);
+}
+
+/* 💖 START GAME (FIXED - was missing earlier) */
+function startGame() {
+  if (gameCompleted) return;
+
+  gameStarted = true;
+  score = 0;
+
+  scoreBoard.innerHTML = "❤️ 0 / " + target;
+
+  document.getElementById("startScreen").style.display = "none";
+
+  clearInterval(gameLoop);
+
+  gameLoop = setInterval(() => {
+    createHeart();
+  }, 700);
+}
+
+/* ✨ UNLOCK */
+function unlockSurprises() {
+  clearInterval(gameLoop);
+  gameStarted = false;
+
+  gameCompleted = true;
+  localStorage.setItem("gameCompleted", "true");
+
+  document.getElementById("winText").style.display = "block";
+
+  document.querySelectorAll(".gift").forEach(card => {
+    card.classList.remove("locked");
+    card.classList.add("unlocked");
+    card.querySelector(".lock").innerHTML = "💖";
+  });
+}
+
+/* 💌 OPEN PAGES */
+function openLetter() {
+  if (document.getElementById("card1").classList.contains("unlocked")) {
+    window.location.href = "letter.html";
+  }
+}
+
+function openJournal() {
+  if (document.getElementById("card2").classList.contains("unlocked")) {
+    window.location.href = "journal.html";
+  }
+}
+
+function openGallery() {
+  if (document.getElementById("card3").classList.contains("unlocked")) {
+    window.location.href = "gallery.html";
+  }
+}
+
+/* 🔁 INIT STATE (IMPORTANT FIX) */
+function initGameState() {
+  const startScreen = document.getElementById("startScreen");
+  const winText = document.getElementById("winText");
+
+  if (gameCompleted) {
+    startScreen.style.display = "none";
+    winText.style.display = "block";
+
+    document.querySelectorAll(".gift").forEach(card => {
+      card.classList.remove("locked");
+      card.classList.add("unlocked");
+      card.querySelector(".lock").innerHTML = "💖";
+    });
+  } else {
+    startScreen.style.display = "flex";
+    winText.style.display = "none";
+
+    document.querySelectorAll(".gift").forEach(card => {
+      card.classList.add("locked");
+      card.classList.remove("unlocked");
+      card.querySelector(".lock").innerHTML = "🔒";
+    });
+  }
+}
+
+/* 🔄 RESET GAME (FULL FIX) */
+function resetGame() {
+  localStorage.removeItem("gameCompleted");
+
+  gameCompleted = false;
+  gameStarted = false;
+  score = 0;
+
+  clearInterval(gameLoop);
+
+  window.location.reload();
+}
+
+/* 🚀 RUN ON LOAD */
+window.onload = function () {
+  initGameState();
+};
+</script>
+
+</body>
+</html>

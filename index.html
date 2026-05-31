@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lock Screen 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Pacifico&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* 🔒 LOCK SCREEN */
+#lockScreen{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(to bottom,#810000,#630000,#181717);
+  font-family:'Nunito', sans-serif;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:60px;
+}
+
+/* POLAROID */
+.photo-card{
+  width:340px;
+  background:white;
+  padding:12px 12px 40px;
+  transform:rotate(-3deg);
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  position:relative;
+}
+
+.photo-card img{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+}
+.polaroid-text{
+  text-align:center;
+  margin-top:16px;
+  font-family:'Pacifico';
+  font-size:16px;
+  color:#7a0000;
+  letter-spacing:1px;
+}
+
+/* ICONS */
+.bow{
+  position:absolute;
+  top:-15px;
+  left:-5px;
+  font-size:45px;
+}
+
+
+/* RIGHT */
+.right-side{
+  text-align:center;
+  color:white;
+}
+
+.right-side h2{
+  font-family:'Pacifico';
+  font-size:38px;
+  color:#ffe9ec;
+}
+
+.password-display{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin:18px 0;
+}
+
+.box{
+  width:55px;
+  height:60px;
+  border:2px solid #ffe9ec;
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  color:white;
+}
+
+.dial-pad{
+  display:grid;
+  grid-template-columns:repeat(3,75px);
+  gap:16px;
+  justify-content:center;
+}
+
+.dial-pad button{
+  width:65px;
+  height:65px;
+  border:none;
+  border-radius:50%;
+  background:#ffe9ec;
+  color:#5a0a0a;
+  font-size:20px;
+  font-weight:700;
+}
+
+#error{
+  height:30px;
+  margin-top:10px;
+  font-family:'Pacifico';
+  color:#ffb3b3;
+}
+
+/* 🎂 CAKE SCREEN */
+
+#cakeScreen{
+  display:none;
+  height:100vh;
+  width:100%;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:linear-gradient(to bottom,#810000,#630000,#181717);
+  overflow:hidden;
+  position:relative;
+}
+
+/* ✨ glow */
+
+#cakeScreen::before{
+  content:'';
+  position:absolute;
+  width:450px;
+  height:450px;
+  background:rgba(255,182,193,0.08);
+  border-radius:50%;
+  filter:blur(80px);
+  top:-100px;
+  right:-100px;
+}
+
+#cakeScreen::after{
+  content:'';
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:rgba(255,215,0,0.08);
+  border-radius:50%;
+  filter:blur(80px);
+  bottom:-100px;
+  left:-100px;
+}
+
+/* 🎂 container */
+
+.cake-container{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  animation:dropCake 2s ease forwards;
+  transform:translateY(-500px);
+  z-index:2;
+}
+
+@keyframes dropCake{
+
+  to{
+    transform:translateY(0);
+  }
+
+}
+
+/* 🎂 cake */
+
+.cake{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* layers */
+
+.layer{
+  border-radius:22px;
+  position:relative;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+.layer1{
+  width:270px;
+  height:85px;
+  background:linear-gradient(to right,#ffb3c6,#ff8fab);
+}
+
+.layer2{
+  width:200px;
+  height:75px;
+  margin-bottom:10px;
+  background:linear-gradient(to right,#ffc2d1,#ff9ebb);
+}
+
+.layer3{
+  width:130px;
+  height:65px;
+  margin-bottom:10px;
+  background:linear-gradient(to right,#ffd6e0,#ffb3c6);
+}
+
+/* icing */
+
+.layer::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:18px;
+  background:#fff0f3;
+  border-radius:20px 20px 10px 10px;
+}
+
+/* hearts */
+
+.layer::after{
+  content:'❤ ❤ ❤';
+  position:absolute;
+  width:100%;
+  text-align:center;
+  bottom:12px;
+  color:white;
+  font-size:18px;
+}
+
+/* candles */
+
+.candles{
+  position:absolute;
+  top:-48px;
+  display:flex;
+  gap:14px;
+}
+
+.candle{
+  width:10px;
+  height:38px;
+  background:white;
+  border-radius:4px;
+  position:relative;
+}
+
+/* 🔥 flame */
+
+.flame{
+  width:13px;
+  height:20px;
+  background:gold;
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius:50%;
+  box-shadow:0 0 18px orange;
+  animation:flicker 0.4s infinite alternate;
+}
+
+@keyframes flicker{
+
+  from{
+    transform:translateX(-50%) scale(1);
+  }
+
+  to{
+    transform:translateX(-50%) scale(1.2);
+    opacity:0.7;
+  }
+
+}
+
+/* ✨ text */
+
+.wish{
+  margin-top:35px;
+  font-family:'Pacifico';
+  font-size:34px;
+  color:#ffe0ea;
+}
+
+#countdown{
+  margin-top:10px;
+  color:#ffd6dc;
+  font-size:20px;
+}
+
+/* 💖 button */
+
+.blow-btn{
+  display:none;
+  margin-top:22px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(to right,#ffe0ea,#ffb3c6);
+  color:#630000;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 6px 20px rgba(255,182,193,0.3);
+}
+
+.blow-btn:hover{
+  transform:scale(1.05);
+}
+/* 💖 CELEBRATION SCREEN */
+#celebrationScreen{
+  display:none;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  background:radial-gradient(circle,#3a0000,#120000,#000);
+}
+
+/* ✨ TEXT */
+#text1{
+  font-family:'Pacifico';
+  font-size:38px;
+  color:#ffd6dc;
+}
+
+#text2{
+  font-family:'Dancing Script', cursive;
+  font-size:44px;
+  color:#ff9fb0;
+  margin-top:18px;
+  white-space:nowrap;
+  overflow:hidden;
+  border-right:3px solid #ff9fb0;
+  width:0;
+}
+
+/* 💖 BUTTON */
+#surpriseBtn{
+  display:none;
+  margin-top:40px;
+  padding:16px 34px;
+  border:none;
+  border-radius:40px;
+  background:linear-gradient(to right,#ffe0ea,#ffb3c6);
+  color:#630000;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(255,182,193,0.35);
+  transition:0.3s;
+  font-family:'Nunito', sans-serif;
+}
+
+#surpriseBtn:hover{
+  transform:scale(1.06);
+}
+
+/* 🎇 FIREWORK */
+.spark{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff6b3,#ffd700,#ffb300);
+  box-shadow:0 0 15px gold;
+  animation:explode 2.5s ease-out forwards;
+}
+
+@keyframes explode{
+
+  0%{
+    transform:translate(0,0) scale(1);
+    opacity:1;
+  }
+
+  100%{
+    transform:translate(var(--x),var(--y)) scale(0.2);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔒 LOCK -->
+<div id="lockScreen">
+
+<div class="container">
+
+  <div class="photo-card">
+
+    <div class="bow">🎀</div>
+    <img src="image1.jpg">
+    <p class="polaroid-text">Happy Birthday Babe!💖</p>
+
+  </div>
+
+  <div class="right-side">
+
+    <h2>Enter Password</h2>
+
+    <div class="password-display">
+      <div class="box" id="b1"></div>
+      <div class="box" id="b2"></div>
+      <div class="box" id="b3"></div>
+      <div class="box" id="b4"></div>
+    </div>
+
+    <div class="dial-pad">
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button onclick="del()">⌫</button>
+      <button onclick="add('0')">0</button>
+      <button onclick="check()">❤</button>
+    </div>
+
+    <div id="error"></div>
+
+    <p style="color:#ffe9ec;margin-top:10px;font-size:13px;">
+      hint — our birthday date 🎂
+    </p>
+
+  </div>
+
+</div>
+</div>
+<!-- 🎂 CAKE SCREEN -->
+<div id="cakeScreen">
+
+  <div class="cake-container">
+
+    <div class="cake">
+
+      <!-- candles -->
+      <div class="candles">
+
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+
+      </div>
+
+      <!-- cake layers -->
+      <div class="layer layer3"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer1"></div>
+
+    </div>
+
+    <div class="wish" id="wishText">
+      Make a wish ✨
+    </div>
+
+    <div id="countdown">
+      Blow candles in 5
+    </div>
+
+    <button class="blow-btn" id="blowBtn" onclick="blowCandles()">
+      Blow the candles
+    </button>
+
+  </div>
+
+</div>
+<!-- 💖 CELEBRATION SCREEN -->
+<div id="celebrationScreen">
+
+  <div id="text1">
+    You are no more 22 ✨
+  </div>
+
+  <div id="text2"></div>
+
+  <button id="surpriseBtn" onclick="openGame()">Open Your Surprise 💖</button>
+
+</div>
+<script>
+
+let pass="";
+
+function update(){
+  document.getElementById("b1").innerText=pass[0]||"";
+  document.getElementById("b2").innerText=pass[1]||"";
+  document.getElementById("b3").innerText=pass[2]||"";
+  document.getElementById("b4").innerText=pass[3]||"";
+}
+
+function add(n){
+  if(pass.length<4){
+    pass+=n;
+    update();
+  }
+}
+
+function del(){
+  pass=pass.slice(0,-1);
+  update();
+}
+
+function check(){
+
+  const err=document.getElementById("error");
+
+  if(pass==="0110"){
+
+    // hide lock screen
+    document.getElementById("lockScreen")
+    .style.display="none";
+
+    // show cake screen
+    document.getElementById("cakeScreen")
+    .style.display="flex";
+
+    startCakeCountdown();
+
+  }else{
+
+    pass="";
+    update();
+
+    err.innerText="you idiot try again 😭";
+
+    setTimeout(()=>{
+      err.innerText="";
+    },2000);
+
+  }
+}
+
+/* 🎂 countdown */
+
+function startCakeCountdown(){
+
+  const countdown =
+  document.getElementById("countdown");
+
+  const btn =
+  document.getElementById("blowBtn");
+
+  let time = 5;
+
+  countdown.innerText =
+  "Blow candles in " + time;
+
+  let timer = setInterval(()=>{
+
+    time--;
+
+    countdown.innerText =
+    "Blow candles in " + time;
+
+    if(time <= 0){
+
+      clearInterval(timer);
+
+      countdown.style.display="none";
+
+      btn.style.display="block";
+
+    }
+
+  },1000);
+
+}
+/* ✨ TYPING */
+function startTyping(){
+
+  const text =
+  document.getElementById("text2");
+
+  text.innerHTML = "";
+
+  let msg =
+  "Enjoy your 23 era, your Glow Begins Now ✨";
+
+  let i = 0;
+
+  function type(){
+
+    if(i < msg.length){
+
+      text.style.width = "fit-content";
+
+      text.innerHTML += msg.charAt(i);
+
+      i++;
+
+      setTimeout(type,90);
+
+    }else{
+
+      startFireworks();
+
+    }
+
+  }
+
+  type();
+
+}
+
+/* 🎇 FIREWORKS */
+let fireworkLoop;
+
+function startFireworks(){
+
+  let screen =
+  document.getElementById("celebrationScreen");
+
+  function burstSet(){
+
+    for(let i=0;i<12;i++){
+
+      let x =
+      Math.random()*window.innerWidth;
+
+      let y =
+      Math.random()*window.innerHeight;
+
+      for(let j=0;j<50;j++){
+
+        let spark =
+        document.createElement("div");
+
+        spark.className = "spark";
+
+        let angle =
+        Math.random()*Math.PI*2;
+
+        let distance =
+        Math.random()*220+80;
+
+        spark.style.left = x+"px";
+        spark.style.top = y+"px";
+
+        spark.style.setProperty(
+          "--x",
+          Math.cos(angle)*distance+"px"
+        );
+
+        spark.style.setProperty(
+          "--y",
+          Math.sin(angle)*distance+"px"
+        );
+
+        screen.appendChild(spark);
+
+        setTimeout(()=>{
+          spark.remove();
+        },2800);
+
+      }
+
+    }
+
+  }
+
+function goNext(){
+
+  // stop fireworks
+  clearInterval(fireworkLoop);
+
+  // hide celebration
+  document.getElementById("celebrationScreen")
+  .style.display = "none";
+
+  // next page logic here later
+  alert("Next surprise page here 💖");
+
+}
+  burstSet();
+
+  fireworkLoop = setInterval(()=>{
+    burstSet();
+  },700);
+
+  // show button
+  setTimeout(()=>{
+
+    document.getElementById("surpriseBtn")
+    .style.display = "block";
+
+  },2000);
+
+}
+
+/* 🎂 BUTTON ACTION */
+
+/* 🎂 BUTTON ACTION */
+function blowCandles(){
+
+  // hide button
+  document.getElementById("blowBtn")
+  .style.display = "none";
+
+  // remove flames
+  document.querySelectorAll(".flame")
+  .forEach(f=>{
+    f.style.display="none";
+  });
+
+  // change text
+  document.getElementById("wishText")
+  .innerText =
+  "May your wish comes true 💖";
+
+  // wait 2 sec then open celebration
+  setTimeout(()=>{
+
+    // hide cake
+    document.getElementById("cakeScreen")
+    .style.display = "none";
+
+    // show celebration
+    document.getElementById("celebrationScreen")
+    .style.display = "flex";
+
+    // start typing
+    startTyping();
+
+  },2000);
+
+}
+function openGame(){
+
+  window.location.href = "game.html";
+
+}
+
+</script>
+
+</body>
+</html>
